@@ -14,7 +14,12 @@ import SpeedDial from './SpeedDial.vue'
 export default {
   name: 'speed-dials',
   components: { SpeedDial },
-  props: ['dials'],
+  props: ['dials', 'type'],
+  updated () {
+    if (this.type === 'custom') {
+      window.speeddialsReady()
+    }
+  },
   data () {
     return {
     }

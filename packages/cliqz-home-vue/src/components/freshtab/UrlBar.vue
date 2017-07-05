@@ -1,11 +1,11 @@
 <template>
-  <input class="url-bar" v-model="value" ref='search' v-on:keydown="queryCliqz" placeholder="Search or enter address"></input>
+  <input class="url-bar" v-model="value" ref='search' v-on:keydown="queryCliqz" placeholder="Search or enter address" :locale="locale"></input>
 </template>
 
 <script>
 export default {
   name: 'url-bar',
-  props: ['core'],
+  props: ['core', 'locale'],
   data () {
     return {
       value: ''
@@ -17,8 +17,10 @@ export default {
     this.queryCliqz.bind(this)
   },
   mounted () {
-    // this.$refs.search.focus()
     this.$el.focus()
+  },
+  updated () {
+    window.urlbarReady()
   },
   methods: {
     queryCliqz (ev) {

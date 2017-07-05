@@ -1,11 +1,21 @@
 /* global document */
 import cliqz from './cliqz-service';
 import Home from './svelte-components/home.html';
+import Benchmark from 'cliqz-home-benchmark';
+
+window.benchmark = new Benchmark('svelte');
+Promise.all([
+    new Promise((resolve) => { window.urlbarReady = () => { benchmark.markOnce('url bar'); resolve(); } }),
+    new Promise((resolve) => { window.speeddialsReady = () => { benchmark.markOnce('speed dials'); resolve(); } }),
+    new Promise((resolve) => { window.newsReady = () => { benchmark.markOnce('news'); resolve(); } }),
+]).then((...args) => {
+    window.benchmark.saveAndReload();
+});
 
 const home = new Home({
   target: document.querySelector('#app'),
   data: {
-    locale: 'en',
+    locale: '',
     speedDials: {
       history: [],
       custom: [],

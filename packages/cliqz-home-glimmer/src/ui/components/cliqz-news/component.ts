@@ -25,6 +25,7 @@ export default class extends Component {
   }
 
   didInsertElement() {
+    window.newsReady();
     const acordion = this.element.querySelector('.acordion');
     const articles = Array.from(this.element.querySelectorAll('.article'));
     const heights = articles.map(el => ({

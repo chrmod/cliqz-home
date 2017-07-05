@@ -17,6 +17,12 @@ class News extends Component {
     this.onChangePage = this.onChangePage.bind(this);
     this.updateOpacity = this.updateOpacity.bind(this);
   }
+  
+  componentDidUpdate() {
+		if (this.props.news.data.length) {
+			window.newsReady();
+		}
+	}
 
   onChangePage(pageOfItems) {
     return Promise.resolve(this.setState({ pageOfItems: pageOfItems }));
