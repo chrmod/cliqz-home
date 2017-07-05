@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cliqz from './Cliqz';
 import UrlBar from './UrlBar';
-import SpeedDials from './SpeedDials';
+import SpeedDialsRow from './SpeedDialsRow';
 import News from './News';
 import './App.css';
 
@@ -20,6 +20,10 @@ class App extends Component {
         data: []
       }    
     };
+
+    this.getSpeedDials = this.getSpeedDials.bind(this);
+    this.addSpeedDial = this.addSpeedDial.bind(this);
+    this.removeSpeedDial = this.removeSpeedDial.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +48,39 @@ class App extends Component {
     });
   }
 
+  addSpeedDial(dial, index) {
+    if(index === undefined){
+      this.state.dials.custom.push(dial);
+    } else {
+      if (dial.custom) {
+        this.state.dials.custom.splice(index, 0, dial);
+      } else  {
+        this.state.dials.history.splice(index, 0, dial);
+      }
+    }
+
+    this.setState({
+      dials: this.state.dials
+    });
+  }
+
+  removeSpeedDial(dial, index) {
+    const isCustom = dial.custom;
+    let dialType = isCustom ? 'custom' : 'history';
+    let newItems = this.state.dials[dialType].filter((item) => {
+      return item != dial;
+    });
+
+    var obj = this.state.dials;
+    obj[dialType] = newItems;
+   
+    this.setState({
+      dials: obj
+    });
+
+    this.freshtab.removeSpeedDial(dial);
+  }
+
   getNews() {
     this.freshtab.getNews().then((data) => {
       this.setState({
@@ -62,7 +99,17 @@ class App extends Component {
           <nav id="nav-left"></nav>
           <section id="content">
             <section id="top">
-              <SpeedDials dials={this.state.dials} />
+              <SpeedDialsRow 
+                dials={this.state.dials.history} 
+                type="history"
+                removeSpeedDial={this.removeSpeedDial}
+                addSpeedDial={this.addSpeedDial}
+                getSpeedDials={this.getSpeedDials} />
+              <SpeedDialsRow 
+                dials={this.state.dials.custom} 
+                type="custom"
+                addSpeedDial={this.addSpeedDial}
+                removeSpeedDial={this.removeSpeedDial} />
             </section>
 
             <section id="middle">

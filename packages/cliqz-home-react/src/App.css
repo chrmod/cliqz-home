@@ -199,4 +199,98 @@ html, body, #app, #home {
   background-repeat: no-repeat;
   background-size: contain;
   box-sizing: border-box;
-  font-family: Helvetica, sans; }
+  font-family: Helvetica, sans; 
+}
+
+a.hideAddForm {
+  display: block;
+  height: auto;
+  cursor: pointer;
+  padding: 0px;
+  text-align: right;
+  color: #CCCCCC;
+  font-size: 16px;
+  line-height: 12px;
+}
+
+.addDialForm {
+  padding: 2px 10px;
+  height: 100%;
+  position: relative;
+  background: #fff;
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: #333;
+  }
+
+  input {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px solid #F3F3F3;
+    color: #666666;
+    width: 100%;
+    padding: 0 0 1px 0;
+    height: auto;
+    line-height: 1.2em;
+  }
+}
+
+.cqz-ez-btn {
+  display: inline-block;
+  line-height: 26px;
+  margin: 0 7px 4px 0px;
+  padding: 0 9px;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 3px;
+  border: 0px;
+}
+
+.delete {
+  position: absolute;
+  top: 0%;
+  left: 28%;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  background: url("/delete-icon.svg") no-repeat;
+  cursor: pointer;
+  overflow:hidden;
+  text-indent:100%;
+  white-space:nowrap;
+  transition:opacity 0.3s ease-out 0.1s;
+  -webkit-transition: opacity 0.3s ease-out 0.1s;
+  -webkit-transition-delay: 1s;
+}
+
+.speed-dial-wrap:hover .delete {
+  opacity: 1;
+  transition:opacity 0.1s ease-out 0.2s;
+}
+
+.undoOptions {
+  height: 50px;
+}
+
+.undo, .closeUndo, .resetAll {
+  display: inline-block;
+  padding-top: 0;
+  margin-left: 15px;
+}
+
+.closeUndo {
+  top: 6px;
+  position: relative;
+}
+
+.closeUndo svg:hover path {
+  fill: #9D9D9D;
+}
+
+.undo, .resetAll {
+  color: #5ea3f9;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
