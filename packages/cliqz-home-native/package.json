@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "./node_modules/gulp/bin/gulp.js && ./node_modules/local-web-server/bin/cli.js -p 3000 -d ./dist",
-    "dev": "./node_modules/gulp/bin/gulp.js serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp",
+    "serve": "npm run build && cliqz-serve"
   },
   "author": "",
   "license": "ISC",

@@ -8,7 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "raureif serve"
+    "build": "raureif build",
+    "serve": "npm run build && cliqz-serve"
   },
   "keywords": [],
   "author": "",

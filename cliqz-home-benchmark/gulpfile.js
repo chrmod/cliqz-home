@@ -5,7 +5,7 @@ const uglifyes = require('uglify-es');
 const composer = require('gulp-uglify/composer');
 const minify = composer(uglifyes, console);
 const concat = require('gulp-concat');
- 
+
 gulp.task('clean', function() {
 	del.sync('./dist/**/*');
 });
@@ -13,7 +13,7 @@ gulp.task('clean', function() {
 gulp.task('bundle-common', function() {
 	return gulp.src(['src/chart.js', 'src/benchmark.js'])
 		.pipe(concat('benchmark.common.js'))
-		.pipe(minify())
+  	.pipe(minify())
 		.pipe(defineModule('plain', {
 			wrapper: "<%= contents %>\nmodule.exports = Benchmark"
 		}))
