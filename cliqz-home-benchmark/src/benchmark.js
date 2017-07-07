@@ -33,8 +33,45 @@ const TIMELINE_KEYS = TIMELINE.reduce((keys, t) => {
 	return keys.concat(x);
 }, []);
 
+// source: https://stackoverflow.com/a/20811670
+function filterOutliers(someArray) {
+
+    // Copy the values, rather than operating on references to existing values
+    var values = someArray.concat();
+
+    // Then sort
+    values.sort( function(a, b) {
+            return a - b;
+         });
+
+    /* Then find a generous IQR. This is generous because if (values.length / 4)
+     * is not an int, then really you should average the two elements on either
+     * side to find q1.
+     */
+    var q1 = values[Math.floor((values.length / 4))];
+    // Likewise for q3.
+    var q3 = values[Math.ceil((values.length * (3 / 4)))];
+    var iqr = q3 - q1;
+
+    // Then find min and max values
+    var maxValue = q3 + iqr*1.5;
+    var minValue = q1 - iqr*1.5;
+
+    // Then filter anything beyond or beneath these values.
+    var filteredValues = values.filter(function(x) {
+        return (x < maxValue) && (x > minValue);
+    });
+
+    // Then return
+    return filteredValues;
+}
+
 function avg(a) {
-	return a.reduce((avg, item) => avg + item) / a.length;
+	return a.reduce((avg, item) => avg + item, 0) / a.length;
+}
+
+function avg2(a){
+  return avg(filterOutliers(a));
 }
 
 function min(a) {
@@ -45,6 +82,7 @@ function max(a) {
 	return a.reduce((max, item) => Math.max(max, item), 0);
 }
 
+
 class Benchmark {
 	constructor(name) {
 		this._benchmarkName = name;
@@ -53,6 +91,7 @@ class Benchmark {
 		this.avg = avg;
 		this.min= min;
 		this.max = max;
+    this.avg2 = avg2;
 	}
 
 	markOnce(name) {
@@ -79,7 +118,7 @@ class Benchmark {
 
 	compare() {
 		const data = this._data;
-		const fns = ['min', 'avg', 'max'];
+		const fns = ['min', 'avg', 'avg2', 'max'];
 		const result = fns.reduce((res, fnName, i) => {
 			const fn = this[fnName];
 			const report = [];
