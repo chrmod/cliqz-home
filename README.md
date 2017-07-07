@@ -29,11 +29,11 @@ Tests can be performed only in CLIQZ browser. Please download one from:
 [https://cliqz.com](https://cliqz.com)
 
 On top of CLIQZ browser, a special version of CLIQZ extension has to be loaded.
-Please download it from [here](http://cdn2.cliqz.com/update/browser_beta/Cliqz.1.18.0.1b145.xpi)
+Please download it from [here](http://cdn2.cliqz.com/update/browser_beta/Cliqz.1.18.0.1b149.xpi)
 
 **Important**, CLIQZ addons automatically update and updated version will not allow the test.
 If this happens, please reinstall the addon from above.
-(you can check addon version in `about:support` - the only working version is 1.18.0.1b145)
+(you can check addon version in `about:support` - the only working version is 1.18.0.1b149)
 
 **Important** to have realistic testing setup, please add couple custom
 Speed Dials on New Tab page, and build some browsing history to get Most Visited

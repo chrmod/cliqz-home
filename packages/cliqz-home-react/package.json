@@ -12,7 +12,7 @@
     "cliqz-home-benchmark": "file:../../cliqz-home-benchmark"
   },
   "scripts": {
-    "build": "react-scripts build",
-    "serve": "npm run build && cliqz-serve"
+    "build": "rm -rf build dist; react-scripts build; mv build dist; echo ignore errors, it is all good",
+    "serve": "npm run build && cliqz-serve; mv build dist"
   }
 }

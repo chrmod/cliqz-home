@@ -17,7 +17,7 @@ Promise.all([
 
 class App extends Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.freshtab = cliqz.freshtab;
     this.state = {
       config: {},
@@ -28,7 +28,7 @@ class App extends Component {
       news: {
         version: '',
         data: []
-      }    
+      }
     };
   }
 
