@@ -66,4 +66,17 @@ project, or call `benchmart.clearAll()` to remove all test results.`
 
 So far, we've identified the given order of rendering speed:
 
-native > svelte > vue / react > glimmer
+native > svelte > vue > react > glimmer
+
+Sample data:
+
+| Framework  | Speed dials AVG (ms) |
+| ------------- | ------------- |
+| native | 275 |
+| svelte | 375 |
+| vue | 377 |
+| react | 450 |
+| glimmer | 636 |
+
+Absolute values varies strongly based on hardware and operating system, but
+the order is maintained in most cases.
